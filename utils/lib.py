@@ -70,7 +70,7 @@ else:
                 data = [l.rstrip() for l in f.readlines()]
         return data
 
-#import utils.lib_commons as lib_commons
+# lib_commons
 import numpy as np 
 import cv2
 import sys, os
@@ -134,7 +134,7 @@ class Timer(object):
 
 if __name__=="__main__":
     print(change_suffix("abc.jpg", new_suffix='avi'))
-#import utils.lib_datasets as lib_datasets
+#lib_datasets
 ''' 
 
 ` class AudioClass
@@ -205,7 +205,7 @@ class AudioDataset(Dataset):
         for i, label in enumerate(classes):
             folder = data_folder + "/" + label + "/"
             
-            names = lib_commons.get_filenames(folder, file_types="*.wav")
+            names = get_filenames(folder, file_types="*.wav")
             labels = [i] * len(names)
             
             files_name.extend(names)
@@ -230,7 +230,7 @@ class AudioDataset(Dataset):
     
     def __getitem__(self, idx):
         
-        timer = lib_commons.Timer()
+        timer = Timer()
         
         # -- Load audio
         if self.bool_cache_audio:
@@ -317,7 +317,7 @@ class AudioClass(object):
             self.n_mfcc = n_mfcc
             
         # Compute
-        self.mfcc = lib_proc_audio.compute_mfcc(self.data, self.sample_rate, n_mfcc)
+        self.mfcc = compute_mfcc(self.data, self.sample_rate, n_mfcc)
     
     def compute_mfcc_histogram(
             self, bins=10, binrange=(-50, 200), col_divides=5,
@@ -330,7 +330,7 @@ class AudioClass(object):
                 features: shape=(feature_dims, bins*col_divides)
         '''
         self._check_and_compute_mfcc()
-        self.mfcc_histogram = lib_proc_audio.calc_histogram(
+        self.mfcc_histogram = calc_histogram(
             self.mfcc, bins, binrange, col_divides)
         
         self.args_mfcc_histogram = ( # record parameters
@@ -342,7 +342,7 @@ class AudioClass(object):
         ):
         ''' Convert mfcc to an image by converting it to [0, 255]'''        
         self._check_and_compute_mfcc()
-        self.mfcc_img = lib_proc_audio.mfcc_to_image(
+        self.mfcc_img = mfcc_to_image(
             self.mfcc, row, col, mfcc_min, mfcc_max)
     
 
@@ -352,7 +352,7 @@ class AudioClass(object):
          
         l0 = len(self.data) / self.sample_rate
         
-        func = lib_proc_audio.remove_silent_prefix_by_freq_domain
+        func = remove_silent_prefix_by_freq_domain
         self.data, self.mfcc = func(
             self.data, self.sample_rate, self.n_mfcc, 
             threshold, padding_s, 
@@ -364,23 +364,23 @@ class AudioClass(object):
         
     # --------------------------- Plotting ---------------------------
     def plot_audio(self, plt_show=False, ax=None):
-        lib_plot.plot_audio(self.data, self.sample_rate, ax=ax)
+        plot_audio(self.data, self.sample_rate, ax=ax)
         if plt_show: plt.show()
             
     def plot_mfcc(self, method='librosa', plt_show=False, ax=None):
         self._check_and_compute_mfcc()
-        lib_plot.plot_mfcc(self.mfcc, self.sample_rate, method, ax=ax)
+        plot_mfcc(self.mfcc, self.sample_rate, method, ax=ax)
         if plt_show: plt.show()
         
     def plot_audio_and_mfcc(self, plt_show=False, figsize=(12, 5)):
         plt.figure(figsize=figsize)
         
         plt.subplot(121)
-        lib_plot.plot_audio(self.data, self.sample_rate, ax=plt.gca())
+        plot_audio(self.data, self.sample_rate, ax=plt.gca())
 
         plt.subplot(122)
         self._check_and_compute_mfcc()
-        lib_plot.plot_mfcc(self.mfcc, self.sample_rate, method='librosa', ax=plt.gca())
+        plot_mfcc(self.mfcc, self.sample_rate, method='librosa', ax=plt.gca())
 
         if plt_show: plt.show()
         
@@ -388,7 +388,7 @@ class AudioClass(object):
         if self.mfcc_histogram is None:
             self.compute_mfcc_histogram()
             
-        lib_plot.plot_mfcc_histogram(
+        plot_mfcc_histogram(
             self.mfcc_histogram, *self.args_mfcc_histogram)
         if plt_show: plt.show()
 
@@ -401,10 +401,10 @@ class AudioClass(object):
 
     # --------------------------- Input / Output ---------------------------
     def write_to_file(self, filename):
-        lib_io.write_audio(filename, self.data, self.sample_rate)
+        write_audio(filename, self.data, self.sample_rate)
     
     def play_audio(self):
-        lib_io.play_audio(data=self.data, sample_rate=self.sample_rate)
+        play_audio(data=self.data, sample_rate=self.sample_rate)
         
 def synthesize_audio(
         text, sample_rate=16000, 
@@ -446,9 +446,9 @@ def shout_out_result(
         synthesize_audio(text=predicted_label, PRINT=True
                          ).write_to_file(filename=fname_predict)
         
-    lib_io.play_audio(filename=filename)
-    lib_io.play_audio(filename=fname_preword)
-    lib_io.play_audio(filename=fname_predict)
+    play_audio(filename=filename)
+    play_audio(filename=fname_preword)
+    play_audio(filename=fname_predict)
 
 def get_wav_filenames(path_to_data):
     ''' Only audio data with .wav suffix are supported by this script '''
@@ -475,7 +475,7 @@ if __name__ == "__main__":
 
     def test_synthesize_audio():
         texts = ["hello"]
-        texts = lib_io.read_list("config/classes_kaggle.names")
+        texts = read_list("config/classes_kaggle.names")
         for text in texts:
             audio = synthesize_audio(text, PRINT=True)
             audio.play_audio()
@@ -487,7 +487,7 @@ if __name__ == "__main__":
         test_synthesize_audio()
 
     main()
-#import utils.lib_augment as lib_augment
+# lib_augment
 ''' Data augmentation on audio.
 Written in the form of a set of Classes. 
 '''
@@ -575,7 +575,7 @@ class Augmenter(object):
             self.intensity = to_tuple(intensity)
             
             # Load noises that we will use
-            fnames = lib_commons.get_filenames(noise_folder)
+            fnames = get_filenames(noise_folder)
             noises = []
             for name in fnames:
                 noise, rate = read_audio(filename=name)
@@ -809,7 +809,7 @@ def main():
 if __name__ == "__main__":
     main()
      
-#import utils.lib_ml as lib_ml
+# lib_ml
 ''' Data augmentation on audio.
 Written in the form of a set of Classes. 
 '''
@@ -901,7 +901,7 @@ class Augmenter(object):
             self.intensity = to_tuple(intensity)
             
             # Load noises that we will use
-            fnames = lib_commons.get_filenames(noise_folder)
+            fnames = get_filenames(noise_folder)
             noises = []
             for name in fnames:
                 noise, rate = read_audio(filename=name)
@@ -1281,4 +1281,3 @@ def test_logger():
     
 if __name__ == "__main__":
     test_logger()        
-#import utils.lib_rnn as lib_rnn
