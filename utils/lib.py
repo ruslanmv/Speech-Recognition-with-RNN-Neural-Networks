@@ -281,7 +281,7 @@ class AudioClass(object):
                  data=None, sample_rate=None, filename=None,
                  n_mfcc=12):
         if filename:
-            self.data, self.sample_rate = lib_io.read_audio(filename, dst_sample_rate=None)
+            self.data, self.sample_rate = read_audio(filename, dst_sample_rate=None)
         elif (len(data) and sample_rate):
             self.data, self.sample_rate = data, sample_rate
         else:
@@ -578,7 +578,7 @@ class Augmenter(object):
             fnames = lib_commons.get_filenames(noise_folder)
             noises = []
             for name in fnames:
-                noise, rate = lib_io.read_audio(filename=name)
+                noise, rate = read_audio(filename=name)
                 noise = librosa.util.normalize(noise) # normalize noise
                 noise = self.repeat_pad_to_time(noise, rate, time=10)
                 noises.append(noise)
@@ -766,7 +766,7 @@ class Augmenter(object):
 
 
 def test_augmentation_effects():
-    from utils.lib_io import read_audio, write_audio, play_audio
+    #from utils.lib import read_audio, write_audio, play_audio
     import copy
 
     filename = 'test_data/audio_3.wav'
@@ -904,7 +904,7 @@ class Augmenter(object):
             fnames = lib_commons.get_filenames(noise_folder)
             noises = []
             for name in fnames:
-                noise, rate = lib_io.read_audio(filename=name)
+                noise, rate = read_audio(filename=name)
                 noise = librosa.util.normalize(noise) # normalize noise
                 noise = self.repeat_pad_to_time(noise, rate, time=10)
                 noises.append(noise)
@@ -1092,7 +1092,7 @@ class Augmenter(object):
 
 
 def test_augmentation_effects():
-    from utils.lib_io import read_audio, write_audio, play_audio
+    #from utils.lib import read_audio, write_audio, play_audio
     import copy
 
     filename = 'test_data/audio_3.wav'
