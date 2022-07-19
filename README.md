@@ -1,6 +1,8 @@
 # Speech Recognition with Pytorch using Recurrent Neural Networks
 
-Hello, today we are going to create a neural  network with **Pytorch** to classify the voice.
+Hello, today we are going to create a neural  network with **Pytorch** to classify the voice. 
+
+<img src="assets/images/posts/README/image-20220719211039962.png" alt="image-20220719211039962" style="zoom:50%;" />
 
 In the previous blog post we have studied this case by using **Tensorflow**  with Convolutional Neural networks.
 
@@ -108,12 +110,10 @@ And now we are ready to start working.
 
 # Recurrent neural networks
 
-
-
 The goal of this project is to implement an audio classification system, which: 
 
-1. first reads in an audio clip (containing at most one word),
-2. and then recognizes the class(label) of this audio.
+1. First reads in an audio clip (containing at most one word),
+2.  Recognizes the class(label) of this audio.
 
 
 ### Classes  
@@ -140,7 +140,27 @@ The model was pretrained on the [Speech Commands Dataset](https://ai.googleblog.
 
 In audio and speech processing, we often deal with sequential data. A waveform is a sequence of sample points 
 
-The output of STFT is a sequence of FFT coefficients. after feature extraction, we get a sequence of acoustic features such as MFCC
+
+
+<img src="assets/images/posts/README/1024px-FFT_of_Cosine_Summation_Function.svg.png" style="zoom:50%;" />
+
+Fig. Example of a discrete Fourier analysis of a sum of cosine waves at 10, 20, 30, 40, and 50 Hz
+
+
+
+The output of  Short-time Fourier transform (STFT ) is a sequence of Fast Fourier transform (FFT) coefficients. after feature extraction, we get a sequence of acoustic features such as MFCC. Mel-frequency cepstral coefficients (MFCCs) are coefficients that collectively make up an MFC. They are derived from a type of  cepstral representation of the audio clip (a nonlinear "spectrum-of-a-spectrum"). 
+
+![](assets/images/posts/README/Spectrogram-19thC.png)
+
+Fig. A spectrogram visualizing the results of a STFT of the words "nineteenth century". Here frequencies are shown increasing up the vertical axis, and time on the horizontal axis. The legend to the right shows that the color intensity increases with the density.
+
+In engineering applications, the Fourier series is generally presumed to converge almost everywhere (the exceptions being at discrete discontinuities) since the functions encountered in engineering are better-behaved than the functions that mathematicians can provide as counter-examples to this presumption. 
+
+![](assets/images/posts/README/Fourier_series_square_wave_circles_animation.gif)
+
+Four partial sums (Fourier series) of lengths 1, 2, 3, and 4 terms, showing how the approximation to a square wave improves as the number of terms increases. where  the Fourier transform by the integral formula
+
+![](https://wikimedia.org/api/rest_v1/media/math/render/svg/f85193e9914731c1f89f34f7d29bc3cd48c36708)
 
 ## What’s special about sequential data? 
 
@@ -152,9 +172,7 @@ It has a time dimension.
 - Reusing parameters 
 
 
- Same information can repeat at different positions in the sequence •
-
-
+ Same information can repeat at different positions in the sequence 
 
  Example of speech recognition:
 
@@ -192,17 +210,15 @@ The output:
 
 ![image-20220713212025022](assets/images/posts/README/image-20220713212025022.png)
 
-Notation: • 𝜎ℎ ⋅ : activation function for hidden states 
+where:
+
+ • 𝜎ℎ ⋅ : activation function for hidden states 
 
 • 𝜎𝑦(⋅): activation function for outputs
 
  • {𝑾ℎ, 𝑼ℎ, 𝒃ℎ,𝑾𝑦, 𝒃𝑦}: time-independent parameters
 
  • Usually we assume 𝒉0 = 0
-
-
-
-
 
 
 
@@ -214,7 +230,7 @@ In Recurrent Neural networks, the information cycles through a loop to the middl
 
 ![Fully_connected_Recurrent_Neural_Network](assets/images/posts/README/Fully_connected_Recurrent_Neural_Network.gif)
 
-Fig: Working of Recurrent Neural Network
+**Fig: Working of Recurrent Neural Network**
 
 The input layer ‘x’ takes in the input to the neural network and processes it and passes it onto the middle layer. 
 
@@ -1254,7 +1270,7 @@ plt.show()
 ![png](assets/images/posts/README/Speech-Recognition-with-RNN-Neural-Networks_81_0.png)
     
 
-
+**Congratulations !** We have discussed and created a Neural Network to classify  speech words by using RNN with Pytorch.
 
 
 

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="620" height="530" font-family="DejaVu Sans" font-size="16" font-stretch="condensed" text-anchor="middle">
+<switch transform="translate(560 38)">
+	<text systemLanguage="de">Sinus</text>
+	<text systemLanguage="en">Sine</text>
+	<text systemLanguage="es">Seno</text>
+	<text systemLanguage="et">Sinusoid</text>
+	<text systemLanguage="fr">Sinuso&#xEF;dale</text>
+	<text systemLanguage="id">Sinus</text>
+	<text systemLanguage="jv">Sinus</text>
+	<text systemLanguage="mk">&#x441;&#x438;&#x43D;&#x443;&#x441;&#x435;&#x43D;</text>
+	<text systemLanguage="pl">Sinusoidalna</text>
+	<text systemLanguage="ru">&#x421;&#x438;&#x43D;&#x443;&#x441;&#x43E;&#x438;&#x434;&#x430;</text>
+	<text systemLanguage="sv">Sinus</text>
+	<text systemLanguage="tr">Sin&#xFC;s</text>
+	<text systemLanguage="uk">&#x421;&#x438;&#x43D;&#x443;&#x441;&#x43E;&#x457;&#x434;&#x430;</text>
+	<text>Sine</text>
+</switch>
+<switch transform="translate(560 168)">
+	<text systemLanguage="de">Rechteck</text>
+	<text systemLanguage="en">Square</text>
+	<text systemLanguage="es">Cuadrada</text>
+	<text systemLanguage="et">Nelinurklaine</text>
+	<text systemLanguage="fr">Carr&#xE9;e</text>
+	<text systemLanguage="id">Persegi</text>
+	<text systemLanguage="jv">Pasagi</text>
+	<text systemLanguage="mk">&#x43A;&#x432;&#x430;&#x434;&#x440;&#x430;&#x442;&#x435;&#x43D;</text>
+	<text systemLanguage="pl">Prostok&#x105;tna</text>
+	<text systemLanguage="ru">&#x41C;&#x435;&#x430;&#x43D;&#x434;&#x440;</text>
+	<text systemLanguage="sv">Fyrkant</text>
+	<text systemLanguage="tr">Kare</text>
+	<text systemLanguage="uk">&#x41F;&#x440;&#x44F;&#x43C;&#x43E;&#x43A;&#x443;&#x442;&#x43D;&#x438;&#x43A;</text>
+	<text>Square</text>
+</switch>
+<switch transform="translate(560 298)">
+	<text systemLanguage="de">Dreieck</text>
+	<text systemLanguage="en">Triangle</text>
+	<text systemLanguage="es">Triangular</text>
+	<text systemLanguage="et"><tspan>Kolmnurk-</tspan><tspan x="0" y="16">laine</tspan></text>
+	<text systemLanguage="fr">Triangulaire</text>
+	<text systemLanguage="id">Segitiga</text>
+	<text systemLanguage="jv">Maju-telu</text>
+	<text systemLanguage="mk">&#x442;&#x440;&#x438;&#x430;&#x433;&#x43E;&#x43B;&#x435;&#x43D;</text>
+	<text systemLanguage="pl">Tr&#xF3;jk&#x105;tna</text>
+	<text systemLanguage="ru">&#x422;&#x440;&#x435;&#x443;&#x433;&#x43E;&#x43B;&#x44C;&#x43D;&#x430;&#x44F;</text>
+	<text systemLanguage="sv">Triangel</text>
+	<text systemLanguage="tr">&#xDC;&#xE7;gen</text>
+	<text systemLanguage="uk">&#x422;&#x440;&#x438;&#x43A;&#x443;&#x442;&#x43D;&#x438;&#x43A;</text>
+	<text>Triangle</text>
+</switch>
+<switch transform="translate(560 428)">
+	<text systemLanguage="de">S&#xE4;gezahn</text>
+	<text systemLanguage="en">Sawtooth</text>
+	<text systemLanguage="es"><tspan>Dientes</tspan><tspan x="0" y="16">de sierra</tspan></text>
+	<text systemLanguage="et"><tspan>Saehammas-</tspan><tspan x="0" y="16">laine</tspan></text>
+	<text systemLanguage="fr">Dents de scie</text>
+	<text systemLanguage="id">Gigi gergaji</text>
+	<text systemLanguage="jv">Untu graji</text>
+	<text systemLanguage="mk">&#x43D;&#x430;&#x437;&#x430;&#x431;&#x435;&#x43D;</text>
+	<text systemLanguage="pl">Pi&#x142;okszta&#x142;tna</text>
+	<text systemLanguage="ru">&#x41F;&#x438;&#x43B;&#x430;</text>
+	<text systemLanguage="sv">S&#xE5;gtand</text>
+	<text systemLanguage="tr">Testere di&#x15F;i</text>
+	<text systemLanguage="uk">&#x41F;&#x438;&#x43B;&#x43A;&#x43E;&#x43F;&#x43E;&#x434;&#x456;&#x431;&#x43D;&#x430;</text>
+	<text>Sawtooth</text>
+</switch>
+
+<g id="b">
+	<g id="a" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<path stroke="#222" stroke-dasharray="2,4" stroke-width=".5" d="m10,30h501m99,40H10m0,40h600M110,10v120m100,0V10m100,0v120m100,0V10m100,0v120"/>
+		<rect x="10" y="10" width="600" height="120" stroke="#666" stroke-width="1.5"/>
+	</g>
+	<use transform="translate(0,130)" xlink:href="#a"/>
+</g>
+<use transform="translate(0,260)" xlink:href="#b"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="#f00">
+	<path d="m10 70c15-20 30-40 50-40 40 0 60 80 100 80s60-80 100-80 60 80 100 80 60-80 100-80 60 80 100 80c20 0 35-20 50-40"/>
+	<path d="m10 160h100v80h100v-80h100v80h100v-80h100v80h100" stroke="#090"/>
+	<path d="m10 330 50-40 100 80 100-80 100 80 100-80 100 80 50-40" stroke="#33f"/>
+	<path d="m10 460 100-40v80l200-80v80l200-80v80l100-40" stroke="#c0c"/>
+</g>
+</svg>
