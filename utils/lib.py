@@ -1179,7 +1179,7 @@ class Augmenter(object):
             len0 = len(data) # record original length
             
             # PlaySpeed
-            data = librosa.effects.time_stretch(data, rate)
+            data = librosa.effects.time_stretch(data, rate=rate)
             
             # Pad
             if self.keep_size:
